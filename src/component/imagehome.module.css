@@ -1,0 +1,23 @@
+.contuner{
+    padding-top: "10%";
+    
+    
+}
+.avatar1{
+    border: 7px solid #fcfdfd;
+    margin-bottom: -35%;
+    margin-left: 45%;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.6);
+}
+.avatar2{
+    border: 7px solid #feffff;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    
+}
+.avatar3{
+    border: 7px solid #ffffff;
+    margin-top: -35%;
+    margin-left: -25%;
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.6);
+}
