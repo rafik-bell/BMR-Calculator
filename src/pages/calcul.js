@@ -13,6 +13,7 @@ import Img3 from "../image/age.png"
 import Img4 from "../image/sex.png"
 
 import styled from 'styled-components';
+import Image from 'mui-image';
 const Tab1 = styled(Tab)`
   margin: 0.3%;
   font-weight: bold;
@@ -22,6 +23,7 @@ const Tab1 = styled(Tab)`
 
 const Calcul = () => {
   const isSmallScreen = useMediaQuery('(max-width:600px)');
+  const isMediumScreen = useMediaQuery('(max-width:900px)');
   const [value, setValue] = React.useState('female');
   
 
@@ -97,7 +99,7 @@ const Calcul = () => {
   const equoh1 = equoh.toFixed(2); 
   return (
     
-    <div style={{backgroundImage:isSmallScreen ? "": "linear-gradient(105deg, #E23722 35%, white 20px)", minHeight: "100vh", display: "flex", flexDirection: "column"  }}>
+    <div style={{backgroundImage:isSmallScreen ?"linear-gradient(-180deg, #E23722 -50%, white 30% )": isMediumScreen? "linear-gradient(-180deg, #E23722 -50%, white 30% )": "linear-gradient(105deg, #E23722 35%, white 20px)", minHeight: "100vh", display: "flex", flexDirection: "column"  }}>
        
        
       <div style={{padding:"2%"}}>
@@ -107,7 +109,7 @@ const Calcul = () => {
         
         <Button variant="outlined"  href="/" sx={{borderRadius:30,margin:"0 2%"}}>Home page</Button>
         </Box>
-    <Box sx={{ padding: ' ',width:"70%" ,display:isSmallScreen ? "none":"" }}>
+    <Box sx={{ padding: ' ',width:"70%" ,display:isMediumScreen ? "none":"" }}>
       <Tabs value={value} onChange={handleChange} centered>
         <Tab1 label="" href="/"  />
         <Tab1 label="" href="/" />
@@ -118,23 +120,23 @@ const Calcul = () => {
   </div>
   </div>
   <Grid container spacing={2}>
-  <Grid item xs={12} md={3}>
+  <Grid item xs={12} md={3} sx={{textAlign:'center'}}>
       
-        <Box sx={{display:"flex",alignContent:"center",alignItems:"center", flexDirection:"column" ,width:"100%"}}>
+        
       {activeStep ===0 && (
-        <Typography variant='h1'>Height</Typography>
+        <Typography variant='h3'>Height</Typography>
        )}
        {activeStep ===1 && (
-        <Typography variant='h1'>Weight</Typography>
+        <Typography variant='h3'>Weight</Typography>
        )}
        {activeStep ===2 && (
-        <Typography variant='h1'>Age</Typography>
+        <Typography variant='h3'>Age</Typography>
        )}
      
       
  
         
-      </Box>
+      
       </Grid>
       <Grid item xs={12} md={9}>
       
@@ -146,7 +148,7 @@ const Calcul = () => {
       {activeStep ===0 && (
         <Box sx={{display:"flex",alignContent:"center",alignItems:"center", flexDirection:"column" ,width:"100%"}}>
           <Box>
-          <img src={Img} alt=""  style={{ minWidth:"100%", }} />
+          <Image src={Img} alt=""  style={{ minWidth:"100%", }} />
 
 
 
@@ -157,7 +159,7 @@ const Calcul = () => {
 
 <Box sx={{marginBottom:"5%",}}>
           <TextField
-       label=''
+       label='Cm'
        defaultValue={tableData[activeStep]}
        
        
@@ -202,7 +204,7 @@ const Calcul = () => {
       {activeStep ===1 && (
          <Box sx={{display:"flex",alignContent:"center",alignItems:"center", flexDirection:"column"}}>
          <Box>
-         <img src={Img1} alt="" style={{minWidth:"100%", }} />
+         <Image src={Img1} alt="" style={{minWidth:"100%", }} />
 
 
 
@@ -214,7 +216,7 @@ const Calcul = () => {
 
          <Box sx={{marginBottom:"5%",}}>
           <TextField
-       label=''
+       label='Kg'
        defaultValue={tableData[activeStep]}
        
        
@@ -258,7 +260,7 @@ const Calcul = () => {
       {activeStep ===2 && (
          <Box sx={{display:"flex",alignContent:"center",alignItems:"center", flexDirection:"column"}}>
          <Box >
-         <img src={Img3} alt="" style={{ width:"80%" }} />
+         <Image src={Img3} alt="" style={{ width:"80%" }} />
 
 
 
@@ -270,7 +272,7 @@ const Calcul = () => {
 
          <Box sx={{marginBottom:"5%",}}>
           <TextField
-       label=''
+       label='Ans'
        defaultValue={tableData[activeStep]}
        
        
@@ -317,7 +319,7 @@ const Calcul = () => {
 {activeStep ===3 && (
          <Box sx={{display:"flex",alignContent:"center",alignItems:"center", flexDirection:"column"}}>
          <Box sx={{maxWidth:"70%"}}>
-         <img src={Img4} alt="" style={{ width:"132%" }} />
+         <Image src={Img4} alt=""  />
 
 
 
@@ -353,7 +355,7 @@ const Calcul = () => {
           { tableData[activeStep-1] ==="male" && (
             <Box sx={{display:"flex",alignContent:"center",alignItems:"center", flexDirection:"column"}}>
 
-          <Typography variant='h1' >{(equoh*1.2).toFixed(2)} cal</Typography>
+          <Typography variant='h2'sx={{color:"#E23722"}} >{(equoh*1.2).toFixed(2)} cal</Typography>
           <Typography variant='h3'sx={{margin:"2%"}}>{((equoh*0.45)/4).toFixed(2)} carbe</Typography>
           <Typography variant='h3'sx={{margin:"2%"}}>{((tableData[1]*0.75)*2.5).toFixed(2)} Protin</Typography>
           <Typography variant='h3'sx={{margin:"2%"}}>{(((equoh*1.2)-(equoh*0.45)-((tableData[1]*0.75)*10))/9).toFixed(2)} fat</Typography>
@@ -362,7 +364,14 @@ const Calcul = () => {
           )}
           { tableData[activeStep-1] ==="female" && (
 
-<Typography variant='h1'>{equof *1.2} cal</Typography> 
+<Box sx={{display:"flex",alignContent:"center",alignItems:"center", flexDirection:"column"}}>
+
+<Typography variant='h2'sx={{color:"#E23722"}} >{(equof*1.2).toFixed(2)} cal</Typography>
+<Typography variant='h3'sx={{margin:"2%"}}>{((equof*0.45)/4).toFixed(2)} carbe</Typography>
+<Typography variant='h3'sx={{margin:"2%"}}>{((tableData[1]*0.75)*2.5).toFixed(2)} Protin</Typography>
+<Typography variant='h3'sx={{margin:"2%"}}>{(((equof*1.2)-(equof*0.45)-((tableData[1]*0.75)*10))/9).toFixed(2)} fat</Typography>
+
+</Box>
 )}
     
           
